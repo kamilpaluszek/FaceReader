@@ -1,0 +1,2 @@
+rootProject.name='FaceReader'
+include ':app'
