@@ -8,6 +8,7 @@ import androidx.core.content.FileProvider;
 import android.Manifest;
 import android.app.Instrumentation;
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
@@ -27,6 +28,7 @@ import android.os.Environment;
 import android.os.FileUtils;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.provider.OpenableColumns;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -273,12 +275,42 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
-       imageView.setImageBitmap(rotatedBitmap);
+       //imageView.setImageBitmap(rotatedBitmap);
       // mBitmap = rotatedBitmap;
         return rotatedBitmap;
 
     }
+    private Bitmap rotateGrabbedImage(Bitmap bitmap, String selectedImage){
+        ExifInterface exifInterface =null;
 
+        try{
+
+            exifInterface = new ExifInterface(selectedImage);
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        int orientation = exifInterface.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED);
+        Matrix matrix = new Matrix();
+
+        switch(orientation){
+            case ExifInterface.ORIENTATION_ROTATE_90:
+                matrix.setRotate(90);
+                break;
+            case ExifInterface.ORIENTATION_ROTATE_180:
+                matrix.setRotate(180);
+                break;
+            case ExifInterface.ORIENTATION_ROTATE_270:
+                matrix.setRotate(270);
+                break;
+            default:
+        }
+
+        Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+        //imageView.setImageBitmap(rotatedBitmap);
+        // mBitmap = rotatedBitmap;
+        return rotatedBitmap;
+
+    }
 
 
 
@@ -403,12 +435,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    private String queryName(ContentResolver resolver, Uri uri) {
+        Cursor returnCursor =
+                resolver.query(uri, null, null, null, null);
+        assert returnCursor != null;
+        int nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+        returnCursor.moveToFirst();
+        String name = returnCursor.getString(nameIndex);
+        returnCursor.close();
+        return name;
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == TAKE_PICTURE_CODE && resultCode == RESULT_OK ) {
             Uri selectedImageUri = data.getData();
-            //selectedImagePath = getPath(getApplicationContext(), selectedImageUri);
+
+
+
+            // selectedImagePath = getPath(getApplicationContext(), selectedImageUri);
 
             InputStream in = null;
             try {
@@ -419,6 +465,8 @@ public class MainActivity extends AppCompatActivity {
 
             mBitmap = BitmapFactory.decodeStream(in);
             //mBitmap = rotateImage(mBitmap);
+           mBitmap=ImageHelper.scaleDown(mBitmap, 1000, true);
+           // mBitmap= Bitmap.createScaledBitmap(mBitmap, 360, 480, true);
             imageView.setImageBitmap(mBitmap);
             processImage();
         }
@@ -429,7 +477,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     mBitmap = MediaStore.Images.Media.getBitmap(
                             getContentResolver(), imageUri);
-                   rotateImage(mBitmap);
+                   //rotateImage(mBitmap);
 
                     String imageurl = getRealPathFromURI(imageUri);
                     in = getContentResolver().openInputStream(imageUri);
@@ -438,9 +486,10 @@ public class MainActivity extends AppCompatActivity {
                 }
 
             mBitmap = BitmapFactory.decodeStream(in);
+                mBitmap=ImageHelper.scaleDown(mBitmap, 1000, true);
                 mBitmap = rotateImage(mBitmap);
-            processImage();
-            //imageView.setImageBitmap(mBitmap);
+                imageView.setImageBitmap(mBitmap);
+                processImage();
             }
 
 
@@ -450,26 +499,6 @@ public class MainActivity extends AppCompatActivity {
 
         }
        // super.onActivityResult(requestCode, resultCode, data);
-
-
-//???????
-    private Bitmap setReducedImageSize() {
-        int targetImageViewWidth = 500;
-        int targetImageViewHeight= 600;
-
-        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-        bmOptions.inJustDecodeBounds = true;
-        BitmapFactory.decodeFile(getRealPathFromURI(imageUri), bmOptions);
-        int cameraImageWidth = bmOptions.outWidth;
-        int cameraImageHeight = bmOptions.outHeight;
-
-        int scaleFactor = Math.min(cameraImageWidth/targetImageViewWidth,cameraImageHeight/targetImageViewHeight);
-        bmOptions.inSampleSize = scaleFactor;
-        bmOptions.inJustDecodeBounds = false;
-
-        return BitmapFactory.decodeFile(getRealPathFromURI(imageUri), bmOptions);
-    }
-
 
         public String getRealPathFromURI(Uri contentUri) {
             String[] proj = { MediaStore.Images.Media.DATA };
