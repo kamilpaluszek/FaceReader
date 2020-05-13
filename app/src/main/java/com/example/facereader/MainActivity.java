@@ -3,6 +3,7 @@ package com.example.facereader;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
 
 import android.Manifest;
@@ -31,6 +32,9 @@ import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.util.Base64;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -121,6 +125,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+                //home przycisk ustawia:
+        //getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+
         ContentValues values = new ContentValues();
         values.put(MediaStore.Images.Media.TITLE, "New Picture");
         values.put(MediaStore.Images.Media.DESCRIPTION, "From your Camera");
@@ -184,6 +197,41 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+//klikniesz an actionbarze ikone
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu, menu);
+        return true;//super.onCreateOptionsMenu(menu);
+    }
+
+
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.about:
+                Intent about = new Intent(this, AboutActivity.class);
+                startActivity(about);
+                //break;
+                return true;
+
+            case R.id.exit:
+                Toast.makeText(getApplicationContext(), "Exit", Toast.LENGTH_SHORT).show();
+               // break;
+                finish();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 
 
     private void processImage() {

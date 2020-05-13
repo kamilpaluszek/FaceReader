@@ -2,14 +2,15 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@color/white"/>
 
-    <item>
-        <bitmap android:src="@drawable/project4"
+    <item
+        android:height="620dp">
+        <bitmap android:src="@drawable/project5"
             android:gravity="center"></bitmap>
     </item>
 
 
     <item
-        android:height="490dp">
+        android:height="450dp">
         <bitmap android:src="@drawable/napis"
             android:gravity="bottom"
 

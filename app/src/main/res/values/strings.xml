@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">FaceReader</string>
+    <string name="exit_name">Exit</string>
+    <string name="about_name">About</string>
 </resources>
