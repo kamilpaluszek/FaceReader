@@ -8,10 +8,10 @@
 
     <include layout="@layout/toolbar"
         android:id="@+id/licence_bar"
-        android:title="Licence"
+        android:title="Photos Used"
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
-        android:label="Licence"
+        android:label="Photos Used"
 
         />
 

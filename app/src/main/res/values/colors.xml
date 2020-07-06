@@ -8,5 +8,12 @@
     <color name="color2">#BDBDBD</color>
     <color name="color3">#607D8B</color>
     <color name="color4">#494850</color>
+    <color name="fajnyNaTlo">#EDE8D3</color>
+
+
+
+    <color name="colorToolbar">#4484CE</color>
+    <color name="colorBkg">#D9D9D9</color>
+
 
 </resources>

@@ -7,10 +7,12 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatDialogFragment;
 
-public class FailedConnectionDialog extends AppCompatDialogFragment {
-    public static FailedConnectionDialog newInstance(String message) {
-        FailedConnectionDialog frag = new FailedConnectionDialog();
+//klasa okna błędu
+public class ErrorDialog extends AppCompatDialogFragment {
+    public static ErrorDialog newInstance(String message) {
+        ErrorDialog frag = new ErrorDialog();
         Bundle args = new Bundle();
+        //ustawienie argumentu o kluczu "message"
         args.putString("message", message);
         frag.setArguments(args);
         return frag;
@@ -19,8 +21,9 @@ public class FailedConnectionDialog extends AppCompatDialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        //odczyt klucza "message"
         String message = getArguments().getString("message");
-
+        //zbudowanie przy pomocy AlertDialog opcji naszego okna
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Error!")
                 .setMessage(message)

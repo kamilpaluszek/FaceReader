@@ -8,14 +8,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 //klasa opisująca licencję zdjęć FER-2013
-public class LicenceActivity extends AppCompatActivity {
+public class PhotosActivity extends AppCompatActivity {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //ustawienie rozmieszczenia elementów
-        setContentView(R.layout.activity_licence);
+        setContentView(R.layout.activity_photos);
         //ustawienie toolbaru
         Toolbar toolbar = (Toolbar)findViewById(R.id.licence_bar);
         setSupportActionBar(toolbar);

@@ -19,9 +19,16 @@
         android:id="@+id/aboutText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
         android:layout_marginStart="10dp"
-        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        android:textSize="25sp"
+        android:text="\n\t\FaceReader is emotion recognition application that recognizes 7
+basic human emotions: \n\n\t\t\t- Anger, \n\t\t\t- Disgust, \n\t\t\t- Fear,
+\n\t\t\t- Happiness, \n\t\t\t- Sadness, \n\t\t\t- Surprisement, \n\t\t\t- Neutral.\n\n\t
+It uses Convolution Neural Network model that was made by us using Python
+and it has about 66% accuracy judging by FER test set. \n\n\t
+All you have to do is load image from your phone's memory with your face or take a photo by
+your front/back camera! "
+        android:textSize="23sp"
         tools:layout_editor_absoluteX="-16dp"
         tools:layout_editor_absoluteY="29dp"
 

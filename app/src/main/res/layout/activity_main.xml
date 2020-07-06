@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBkg"
 
 
     tools:context=".MainActivity">
@@ -16,15 +17,29 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="370dp"
+        android:textSize="20sp"
 
-        android:text="TextView" />
+        android:text="Choose a photo from \nGallery or take photo." />
+
+    <ImageView
+        android:id="@+id/cameraImg"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+
+        android:layout_marginTop="50dp"
+        android:src="@drawable/camera" />
+
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="80dp"
         android:layout_marginTop="55dp"
         android:weightSum="1">
 
@@ -42,37 +57,58 @@
 
 
     </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="590dp"
+        android:background="#000"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        />
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="-4dp"
-        android:weightSum="3">
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+
+        android:layout_marginRight="10dp"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/btnGallery"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="Go to Gallery"
+            android:textAllCaps="false"
+            android:textSize="18sp
+"           android:textColor="#FFFFFF"
+            android:background="@drawable/custom_button"
+            android:layout_marginRight = "10dp"
+            />
 
 
         <Button
-            android:id="@+id/btnTakePic"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Take Picture" />
+            android:id="@+id/btnTakeaPhoto"
 
-        <Button
-            android:id="@+id/btnProcess"
-            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:text="Process" />
+            android:text="Take a Photo"
+            android:textAllCaps="false"
+            android:textSize="18sp
+"           android:textColor="#FFFFFF"
+            android:background="@drawable/custom_button"
+            android:layout_marginLeft = "10dp"
+            />
 
-        <Button
-            android:id="@+id/btnMakePhoto"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Make Photo" />
+
 
 
     </LinearLayout>
