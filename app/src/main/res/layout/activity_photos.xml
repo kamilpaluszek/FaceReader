@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PhotosActivity">
+
+    <include layout="@layout/toolbar"
+        android:id="@+id/licence_bar"
+        android:title="Licence"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:label="Licence"
+
+        />
+
+    <TextView
+        android:id="@+id/aboutLicence"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:layout_marginStart="10dp"
+        android:text="\n\t\tTo make our Convolution Neural Network model that recognizes emotions in this application we needed to find large and good dataset that was not licensed.
+\n\n\t\tWe decided to use FER-2013 Dataset which includes 35,685 examples of 48x48 pixel grayscale images of faces.
+\n\n\t\tImages were categorized based on the emotion shown in the facial expressions (happiness, neutral, sadness, anger, surprise, disgust, fear).
+\n\n\t\tThis dataset was prepared by Pierre-Luc Carrier and Aaron Courville, as part of an ongoing research project. "
+        android:textSize="23sp"
+        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteY="29dp"
+
+        />
+</RelativeLayout>
